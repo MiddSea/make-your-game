@@ -1,0 +1,401 @@
+// Breakout Game - Following MDA Framework
+// No canvas, pure DOM manipulation for 60 FPS performance
+
+class BreakoutGame {
+    constructor() {
+        // Game state
+        this.gameRunning = false;
+        this.gamePaused = false;
+        this.score = 0;
+        this.lives = 3;
+        this.level = 1;
+        
+        // Game objects
+        this.paddle = null;
+        this.ball = null;
+        this.bricks = [];
+        
+        // Game constants (Mechanics)
+        this.config = {
+            paddleSpeed: 8,
+            paddleWidth: 80,
+            paddleHeight: 10,
+            ballSize: 10,
+            ballSpeed: 3,
+            ballSpeedIncrement: 0.5,
+            maxBallSpeed: 8,
+            brickRows: 8,
+            brickCols: 14,
+            brickWidth: 50,
+            brickHeight: 20,
+            brickPadding: 2,
+            brickOffsetTop: 60,
+            brickOffsetLeft: 35
+        };
+        
+        // Input handling
+        this.keys = {
+            left: false,
+            right: false
+        };
+        
+        // Performance tracking
+        this.lastFrameTime = 0;
+        this.frameCount = 0;
+        this.fps = 0;
+        
+        this.init();
+    }
+    
+    init() {
+        this.gameCanvas = document.getElementById('game-canvas');
+        this.setupEventListeners();
+        this.createGameObjects();
+        this.createBricks();
+        this.showStartScreen();
+    }
+    
+    setupEventListeners() {
+        // Keyboard controls - smooth continuous movement
+        document.addEventListener('keydown', (e) => {
+            switch(e.key) {
+                case 'ArrowLeft':
+                    this.keys.left = true;
+                    e.preventDefault();
+                    break;
+                case 'ArrowRight':
+                    this.keys.right = true;
+                    e.preventDefault();
+                    break;
+                case ' ':
+                    if (!this.gameRunning) {
+                        this.startGame();
+                    }
+                    e.preventDefault();
+                    break;
+                case 'p':
+                case 'P':
+                    this.togglePause();
+                    e.preventDefault();
+                    break;
+            }
+        });
+        
+        document.addEventListener('keyup', (e) => {
+            switch(e.key) {
+                case 'ArrowLeft':
+                    this.keys.left = false;
+                    break;
+                case 'ArrowRight':
+                    this.keys.right = false;
+                    break;
+            }
+        });
+        
+        // Pause menu buttons
+        document.getElementById('continue-btn').addEventListener('click', () => {
+            this.togglePause();
+        });
+        
+        document.getElementById('restart-btn').addEventListener('click', () => {
+            this.resetGame();
+        });
+        
+        document.getElementById('play-again-btn').addEventListener('click', () => {
+            this.resetGame();
+            this.startGame();
+        });
+    }
+    
+    createGameObjects() {
+        // Create paddle
+        this.paddle = document.createElement('div');
+        this.paddle.className = 'paddle';
+        this.paddle.style.width = this.config.paddleWidth + 'px';
+        this.paddle.style.height = this.config.paddleHeight + 'px';
+        this.paddle.style.bottom = '20px';
+        this.paddle.style.left = (this.gameCanvas.offsetWidth - this.config.paddleWidth) / 2 + 'px';
+        this.gameCanvas.appendChild(this.paddle);
+        
+        // Create ball
+        this.ball = document.createElement('div');
+        this.ball.className = 'ball';
+        this.ball.style.width = this.config.ballSize + 'px';
+        this.ball.style.height = this.config.ballSize + 'px';
+        this.resetBall();
+        this.gameCanvas.appendChild(this.ball);
+    }
+    
+    createBricks() {
+        const colors = [
+            '#ff0000', '#ff0000',  // Red rows
+            '#ff7f00', '#ff7f00',  // Orange rows
+            '#00ff00', '#00ff00',  // Green rows
+            '#ffff00', '#ffff00'   // Yellow rows
+        ];
+        
+        const points = [7, 7, 5, 5, 3, 3, 1, 1];
+        
+        for (let r = 0; r < this.config.brickRows; r++) {
+            this.bricks[r] = [];
+            for (let c = 0; c < this.config.brickCols; c++) {
+                const brick = document.createElement('div');
+                brick.className = 'brick';
+                brick.style.width = this.config.brickWidth + 'px';
+                brick.style.height = this.config.brickHeight + 'px';
+                brick.style.backgroundColor = colors[r];
+                brick.style.left = c * (this.config.brickWidth + this.config.brickPadding) + this.config.brickOffsetLeft + 'px';
+                brick.style.top = r * (this.config.brickHeight + this.config.brickPadding) + this.config.brickOffsetTop + 'px';
+                
+                this.gameCanvas.appendChild(brick);
+                
+                this.bricks[r][c] = {
+                    element: brick,
+                    destroyed: false,
+                    points: points[r]
+                };
+            }
+        }
+    }
+    
+    resetBall() {
+        this.ballX = this.gameCanvas.offsetWidth / 2;
+        this.ballY = this.gameCanvas.offsetHeight - 50;
+        this.ballDX = this.config.ballSpeed;
+        this.ballDY = -this.config.ballSpeed;
+        
+        this.ball.style.left = this.ballX + 'px';
+        this.ball.style.top = this.ballY + 'px';
+    }
+    
+    showStartScreen() {
+        // Initial game state display
+        this.updateUI();
+    }
+    
+    startGame() {
+        this.gameRunning = true;
+        this.gamePaused = false;
+        document.getElementById('game-over').classList.add('hidden');
+        this.gameLoop(performance.now());
+    }
+    
+    togglePause() {
+        if (!this.gameRunning) return;
+        
+        this.gamePaused = !this.gamePaused;
+        const pauseMenu = document.getElementById('pause-menu');
+        
+        if (this.gamePaused) {
+            pauseMenu.classList.remove('hidden');
+        } else {
+            pauseMenu.classList.add('hidden');
+            this.gameLoop(performance.now());
+        }
+    }
+    
+    resetGame() {
+        this.score = 0;
+        this.lives = 3;
+        this.level = 1;
+        this.gameRunning = false;
+        this.gamePaused = false;
+        
+        // Reset ball
+        this.resetBall();
+        
+        // Reset paddle position
+        this.paddle.style.left = (this.gameCanvas.offsetWidth - this.config.paddleWidth) / 2 + 'px';
+        
+        // Reset bricks
+        this.bricks.forEach(row => {
+            row.forEach(brick => {
+                brick.destroyed = false;
+                brick.element.style.display = 'block';
+            });
+        });
+        
+        // Hide menus
+        document.getElementById('pause-menu').classList.add('hidden');
+        document.getElementById('game-over').classList.add('hidden');
+        
+        this.updateUI();
+    }
+    
+    // Main game loop - targeting 60 FPS
+    gameLoop(currentTime) {
+        if (!this.gameRunning || this.gamePaused) return;
+        
+        // Calculate delta time for consistent motion
+        const deltaTime = currentTime - this.lastFrameTime;
+        const targetFrameTime = 1000 / 60; // 60 FPS
+        
+        if (deltaTime >= targetFrameTime) {
+            this.update();
+            this.render();
+            
+            // FPS calculation
+            this.frameCount++;
+            if (this.frameCount % 60 === 0) {
+                this.fps = Math.round(1000 / deltaTime);
+                console.log(`FPS: ${this.fps}`);
+            }
+            
+            this.lastFrameTime = currentTime;
+        }
+        
+        requestAnimationFrame((time) => this.gameLoop(time));
+    }
+    
+    update() {
+        // Update paddle position based on input
+        this.updatePaddle();
+        
+        // Update ball position
+        this.updateBall();
+        
+        // Check collisions
+        this.checkCollisions();
+        
+        // Check win condition
+        this.checkWinCondition();
+    }
+    
+    updatePaddle() {
+        const paddleX = parseInt(this.paddle.style.left);
+        const canvasWidth = this.gameCanvas.offsetWidth;
+        
+        if (this.keys.left && paddleX > 0) {
+            this.paddle.style.left = Math.max(0, paddleX - this.config.paddleSpeed) + 'px';
+        }
+        
+        if (this.keys.right && paddleX < canvasWidth - this.config.paddleWidth) {
+            this.paddle.style.left = Math.min(canvasWidth - this.config.paddleWidth, paddleX + this.config.paddleSpeed) + 'px';
+        }
+    }
+    
+    updateBall() {
+        this.ballX += this.ballDX;
+        this.ballY += this.ballDY;
+        
+        // Wall collisions
+        if (this.ballX + this.config.ballSize > this.gameCanvas.offsetWidth || this.ballX < 0) {
+            this.ballDX = -this.ballDX;
+        }
+        
+        if (this.ballY < 0) {
+            this.ballDY = -this.ballDY;
+        }
+        
+        // Bottom boundary - lose life
+        if (this.ballY > this.gameCanvas.offsetHeight) {
+            this.loseLife();
+        }
+    }
+    
+    checkCollisions() {
+        // Paddle collision
+        const paddleX = parseInt(this.paddle.style.left);
+        const paddleY = this.gameCanvas.offsetHeight - 40;
+        
+        if (this.ballY + this.config.ballSize >= paddleY &&
+            this.ballY <= paddleY + this.config.paddleHeight &&
+            this.ballX + this.config.ballSize >= paddleX &&
+            this.ballX <= paddleX + this.config.paddleWidth) {
+            
+            // Calculate angle based on where ball hits paddle
+            const hitPos = (this.ballX - paddleX) / this.config.paddleWidth;
+            const angle = (hitPos - 0.5) * Math.PI / 3; // -60 to 60 degrees
+            
+            const speed = Math.sqrt(this.ballDX * this.ballDX + this.ballDY * this.ballDY);
+            this.ballDX = speed * Math.sin(angle);
+            this.ballDY = -Math.abs(speed * Math.cos(angle));
+        }
+        
+        // Brick collisions
+        for (let r = 0; r < this.config.brickRows; r++) {
+            for (let c = 0; c < this.config.brickCols; c++) {
+                const brick = this.bricks[r][c];
+                if (!brick.destroyed) {
+                    const brickX = c * (this.config.brickWidth + this.config.brickPadding) + this.config.brickOffsetLeft;
+                    const brickY = r * (this.config.brickHeight + this.config.brickPadding) + this.config.brickOffsetTop;
+                    
+                    if (this.ballX + this.config.ballSize >= brickX &&
+                        this.ballX <= brickX + this.config.brickWidth &&
+                        this.ballY + this.config.ballSize >= brickY &&
+                        this.ballY <= brickY + this.config.brickHeight) {
+                        
+                        this.ballDY = -this.ballDY;
+                        brick.destroyed = true;
+                        brick.element.style.display = 'none';
+                        this.score += brick.points;
+                        this.updateUI();
+                    }
+                }
+            }
+        }
+    }
+    
+    checkWinCondition() {
+        const allDestroyed = this.bricks.every(row => 
+            row.every(brick => brick.destroyed)
+        );
+        
+        if (allDestroyed) {
+            this.nextLevel();
+        }
+    }
+    
+    nextLevel() {
+        this.level++;
+        this.config.ballSpeed = Math.min(
+            this.config.ballSpeed + this.config.ballSpeedIncrement,
+            this.config.maxBallSpeed
+        );
+        
+        // Reset bricks
+        this.bricks.forEach(row => {
+            row.forEach(brick => {
+                brick.destroyed = false;
+                brick.element.style.display = 'block';
+            });
+        });
+        
+        this.resetBall();
+        this.updateUI();
+    }
+    
+    loseLife() {
+        this.lives--;
+        this.updateUI();
+        
+        if (this.lives <= 0) {
+            this.gameOver();
+        } else {
+            this.resetBall();
+        }
+    }
+    
+    gameOver() {
+        this.gameRunning = false;
+        document.getElementById('final-score').textContent = this.score;
+        document.getElementById('game-over').classList.remove('hidden');
+    }
+    
+    render() {
+        // Update ball position
+        this.ball.style.left = this.ballX + 'px';
+        this.ball.style.top = this.ballY + 'px';
+    }
+    
+    updateUI() {
+        document.getElementById('score-value').textContent = this.score;
+        document.getElementById('lives-value').textContent = this.lives;
+        document.getElementById('level-value').textContent = this.level;
+    }
+}
+
+// Initialize game when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    const game = new BreakoutGame();
+});
