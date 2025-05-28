@@ -19,18 +19,18 @@ class BreakoutGame {
         this.config = {
             paddleSpeed: 8,
             paddleWidth: 80,
-            paddleHeight: 10,
-            ballSize: 10,
+            paddleHeight: 12,
+            ballSize: 12,
             ballSpeed: 3,
             ballSpeedIncrement: 0.5,
             maxBallSpeed: 8,
             brickRows: 8,
-            brickCols: 14,
-            brickWidth: 50,
+            brickCols: 10,
+            brickWidth: 78,
             brickHeight: 20,
             brickPadding: 2,
             brickOffsetTop: 60,
-            brickOffsetLeft: 35
+            brickOffsetLeft: 0
         };
         
         // Input handling
@@ -48,17 +48,20 @@ class BreakoutGame {
     }
     
     init() {
-        this.gameCanvas = document.getElementById('game-canvas');
+        this.gameArea = document.getElementById('game-area');
+        this.bricksContainer = document.getElementById('bricks-container');
+        this.paddle = document.getElementById('paddle');
+        this.ball = document.getElementById('ball');
         this.setupEventListeners();
-        this.createGameObjects();
         this.createBricks();
+        this.resetBall();
         this.showStartScreen();
     }
     
     setupEventListeners() {
         // Keyboard controls - smooth continuous movement
         document.addEventListener('keydown', (e) => {
-            switch(e.key) {
+            switch(e.code) {
                 case 'ArrowLeft':
                     this.keys.left = true;
                     e.preventDefault();
@@ -67,22 +70,28 @@ class BreakoutGame {
                     this.keys.right = true;
                     e.preventDefault();
                     break;
-                case ' ':
+                case 'Space':
                     if (!this.gameRunning) {
                         this.startGame();
                     }
                     e.preventDefault();
                     break;
-                case 'p':
-                case 'P':
+                case 'KeyP':
                     this.togglePause();
+                    e.preventDefault();
+                    break;
+                case 'KeyR':
+                    if (this.gamePaused) {
+                        this.resetGame();
+                        this.startGame();
+                    }
                     e.preventDefault();
                     break;
             }
         });
         
         document.addEventListener('keyup', (e) => {
-            switch(e.key) {
+            switch(e.code) {
                 case 'ArrowLeft':
                     this.keys.left = false;
                     break;
@@ -92,75 +101,42 @@ class BreakoutGame {
             }
         });
         
-        // Pause menu buttons
-        document.getElementById('continue-btn').addEventListener('click', () => {
-            this.togglePause();
-        });
-        
-        document.getElementById('restart-btn').addEventListener('click', () => {
-            this.resetGame();
-        });
-        
-        document.getElementById('play-again-btn').addEventListener('click', () => {
-            this.resetGame();
-            this.startGame();
-        });
+        // Remove button event listeners since we're using keyboard only
     }
     
-    createGameObjects() {
-        // Create paddle
-        this.paddle = document.createElement('div');
-        this.paddle.className = 'paddle';
-        this.paddle.style.width = this.config.paddleWidth + 'px';
-        this.paddle.style.height = this.config.paddleHeight + 'px';
-        this.paddle.style.bottom = '20px';
-        this.paddle.style.left = (this.gameCanvas.offsetWidth - this.config.paddleWidth) / 2 + 'px';
-        this.gameCanvas.appendChild(this.paddle);
-        
-        // Create ball
-        this.ball = document.createElement('div');
-        this.ball.className = 'ball';
-        this.ball.style.width = this.config.ballSize + 'px';
-        this.ball.style.height = this.config.ballSize + 'px';
-        this.resetBall();
-        this.gameCanvas.appendChild(this.ball);
-    }
+    // Game objects are already created in HTML, just initialize positions
     
     createBricks() {
-        const colors = [
-            '#ff0000', '#ff0000',  // Red rows
-            '#ff7f00', '#ff7f00',  // Orange rows
-            '#00ff00', '#00ff00',  // Green rows
-            '#ffff00', '#ffff00'   // Yellow rows
-        ];
+        this.bricksContainer.innerHTML = '';
+        this.bricks = [];
         
+        const colorClasses = ['red', 'red', 'orange', 'orange', 'green', 'green', 'yellow', 'yellow'];
         const points = [7, 7, 5, 5, 3, 3, 1, 1];
         
         for (let r = 0; r < this.config.brickRows; r++) {
             this.bricks[r] = [];
             for (let c = 0; c < this.config.brickCols; c++) {
                 const brick = document.createElement('div');
-                brick.className = 'brick';
-                brick.style.width = this.config.brickWidth + 'px';
-                brick.style.height = this.config.brickHeight + 'px';
-                brick.style.backgroundColor = colors[r];
-                brick.style.left = c * (this.config.brickWidth + this.config.brickPadding) + this.config.brickOffsetLeft + 'px';
-                brick.style.top = r * (this.config.brickHeight + this.config.brickPadding) + this.config.brickOffsetTop + 'px';
+                brick.className = `brick brick-${colorClasses[r]}`;
+                brick.style.left = c * 80 + 'px';
+                brick.style.top = r * 25 + 'px';
                 
-                this.gameCanvas.appendChild(brick);
+                this.bricksContainer.appendChild(brick);
                 
                 this.bricks[r][c] = {
                     element: brick,
                     destroyed: false,
-                    points: points[r]
+                    points: points[r],
+                    x: c * 80,
+                    y: r * 25
                 };
             }
         }
     }
     
     resetBall() {
-        this.ballX = this.gameCanvas.offsetWidth / 2;
-        this.ballY = this.gameCanvas.offsetHeight - 50;
+        this.ballX = 400;
+        this.ballY = 300;
         this.ballDX = this.config.ballSpeed;
         this.ballDY = -this.config.ballSpeed;
         
@@ -176,7 +152,9 @@ class BreakoutGame {
     startGame() {
         this.gameRunning = true;
         this.gamePaused = false;
+        document.getElementById('start-screen').classList.add('hidden');
         document.getElementById('game-over').classList.add('hidden');
+        document.getElementById('pause-menu').classList.add('hidden');
         this.gameLoop(performance.now());
     }
     
@@ -205,7 +183,7 @@ class BreakoutGame {
         this.resetBall();
         
         // Reset paddle position
-        this.paddle.style.left = (this.gameCanvas.offsetWidth - this.config.paddleWidth) / 2 + 'px';
+        this.paddle.style.left = '360px';
         
         // Reset bricks
         this.bricks.forEach(row => {
@@ -263,14 +241,13 @@ class BreakoutGame {
     
     updatePaddle() {
         const paddleX = parseInt(this.paddle.style.left);
-        const canvasWidth = this.gameCanvas.offsetWidth;
         
         if (this.keys.left && paddleX > 0) {
             this.paddle.style.left = Math.max(0, paddleX - this.config.paddleSpeed) + 'px';
         }
         
-        if (this.keys.right && paddleX < canvasWidth - this.config.paddleWidth) {
-            this.paddle.style.left = Math.min(canvasWidth - this.config.paddleWidth, paddleX + this.config.paddleSpeed) + 'px';
+        if (this.keys.right && paddleX < 720) {
+            this.paddle.style.left = Math.min(720, paddleX + this.config.paddleSpeed) + 'px';
         }
     }
     
@@ -279,16 +256,16 @@ class BreakoutGame {
         this.ballY += this.ballDY;
         
         // Wall collisions
-        if (this.ballX + this.config.ballSize > this.gameCanvas.offsetWidth || this.ballX < 0) {
+        if (this.ballX + this.config.ballSize > 800 || this.ballX < 0) {
             this.ballDX = -this.ballDX;
         }
         
-        if (this.ballY < 0) {
+        if (this.ballY < 60) {
             this.ballDY = -this.ballDY;
         }
         
         // Bottom boundary - lose life
-        if (this.ballY > this.gameCanvas.offsetHeight) {
+        if (this.ballY > 600) {
             this.loseLife();
         }
     }
@@ -296,7 +273,7 @@ class BreakoutGame {
     checkCollisions() {
         // Paddle collision
         const paddleX = parseInt(this.paddle.style.left);
-        const paddleY = this.gameCanvas.offsetHeight - 40;
+        const paddleY = 570;
         
         if (this.ballY + this.config.ballSize >= paddleY &&
             this.ballY <= paddleY + this.config.paddleHeight &&
@@ -317,13 +294,12 @@ class BreakoutGame {
             for (let c = 0; c < this.config.brickCols; c++) {
                 const brick = this.bricks[r][c];
                 if (!brick.destroyed) {
-                    const brickX = c * (this.config.brickWidth + this.config.brickPadding) + this.config.brickOffsetLeft;
-                    const brickY = r * (this.config.brickHeight + this.config.brickPadding) + this.config.brickOffsetTop;
+                    const brickY = brick.y + 60; // offset for UI
                     
-                    if (this.ballX + this.config.ballSize >= brickX &&
-                        this.ballX <= brickX + this.config.brickWidth &&
+                    if (this.ballX + this.config.ballSize >= brick.x &&
+                        this.ballX <= brick.x + 78 &&
                         this.ballY + this.config.ballSize >= brickY &&
-                        this.ballY <= brickY + this.config.brickHeight) {
+                        this.ballY <= brickY + 20) {
                         
                         this.ballDY = -this.ballDY;
                         brick.destroyed = true;
