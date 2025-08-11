@@ -52,6 +52,11 @@ class BreakoutGame {
         this.bricksContainer = document.getElementById('bricks-container');
         this.paddle = document.getElementById('paddle');
         this.ball = document.getElementById('ball');
+        
+        // Initialize paddle position
+        this.paddleX = 360;
+        this.paddle.style.left = this.paddleX + 'px';
+        
         this.setupEventListeners();
         this.createBricks();
         this.resetBall();
@@ -71,7 +76,10 @@ class BreakoutGame {
                     e.preventDefault();
                     break;
                 case 'Space':
-                    if (!this.gameRunning) {
+                    if (!this.gameRunning && this.lives > 0) {
+                        this.startGame();
+                    } else if (!this.gameRunning && this.lives <= 0) {
+                        this.resetGame();
                         this.startGame();
                     }
                     e.preventDefault();
@@ -183,7 +191,8 @@ class BreakoutGame {
         this.resetBall();
         
         // Reset paddle position
-        this.paddle.style.left = '360px';
+        this.paddleX = 360;
+        this.paddle.style.left = this.paddleX + 'px';
         
         // Reset bricks
         this.bricks.forEach(row => {
@@ -240,14 +249,14 @@ class BreakoutGame {
     }
     
     updatePaddle() {
-        const paddleX = parseInt(this.paddle.style.left);
-        
-        if (this.keys.left && paddleX > 0) {
-            this.paddle.style.left = Math.max(0, paddleX - this.config.paddleSpeed) + 'px';
+        if (this.keys.left && this.paddleX > 0) {
+            this.paddleX = Math.max(0, this.paddleX - this.config.paddleSpeed);
+            this.paddle.style.left = this.paddleX + 'px';
         }
         
-        if (this.keys.right && paddleX < 720) {
-            this.paddle.style.left = Math.min(720, paddleX + this.config.paddleSpeed) + 'px';
+        if (this.keys.right && this.paddleX < 720) {
+            this.paddleX = Math.min(720, this.paddleX + this.config.paddleSpeed);
+            this.paddle.style.left = this.paddleX + 'px';
         }
     }
     
@@ -272,16 +281,15 @@ class BreakoutGame {
     
     checkCollisions() {
         // Paddle collision
-        const paddleX = parseInt(this.paddle.style.left);
         const paddleY = 570;
         
         if (this.ballY + this.config.ballSize >= paddleY &&
             this.ballY <= paddleY + this.config.paddleHeight &&
-            this.ballX + this.config.ballSize >= paddleX &&
-            this.ballX <= paddleX + this.config.paddleWidth) {
+            this.ballX + this.config.ballSize >= this.paddleX &&
+            this.ballX <= this.paddleX + this.config.paddleWidth) {
             
             // Calculate angle based on where ball hits paddle
-            const hitPos = (this.ballX - paddleX) / this.config.paddleWidth;
+            const hitPos = (this.ballX - this.paddleX) / this.config.paddleWidth;
             const angle = (hitPos - 0.5) * Math.PI / 3; // -60 to 60 degrees
             
             const speed = Math.sqrt(this.ballDX * this.ballDX + this.ballDY * this.ballDY);
@@ -348,6 +356,8 @@ class BreakoutGame {
         if (this.lives <= 0) {
             this.gameOver();
         } else {
+            // Stop the game and reset ball position, wait for space to continue
+            this.gameRunning = false;
             this.resetBall();
         }
     }

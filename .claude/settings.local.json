@@ -2,8 +2,31 @@
   "permissions": {
     "allow": [
       "WebFetch(domain:docs.anthropic.com)",
-      "Bash(rm:*)"
+      "Bash(rm:*)",
+      "Bash(git tag:*)",
+      "Bash(git push:*)",
+      "Bash(chmod:*)",
+      "Bash(./mirror_to_github.sh:*)",
+      "Bash(mkdir:*)",
+      "Bash(ls:*)",
+      "Bash(cat:*)",
+      "Bash(find:*)",
+      "Bash(npx -y @smithery/cli@latest run @arjunkmrm/perplexity-deep-research --help)",
+      "Bash(cp:*)",
+      "Bash(open:*)",
+      "Bash(git fetch:*)",
+      "mcp__git1__git_log",
+      "mcp__git1__git_status",
+      "Bash(echo \"Current EDITOR: $EDITOR\")",
+      "Bash(echo:*)",
+      "Bash(defaults read:*)",
+      "Bash(mdls:*)",
+      "Bash(system_profiler:*)",
+      "Bash(grep:*)",
+      "Bash(source:*)",
+      "mcp__mem0-memory-mcp__add-memory",
+      "Bash(mv:*)"
     ]
   },
-  "enableAllProjectMcpServers": false
+  "enableAllProjectMcpServers": true
 }

@@ -5,59 +5,74 @@
 ## Game Overview
 
 ### Concept
+
 [To be filled in after reviewing the project brief]
 
 ### Genre
+
 Browser-based game
 
 ### Target Audience
+
 Students and developers learning JavaScript game development
 
 ## Game Mechanics (M)
 
 ### Core Mechanics
+
 - [To be defined based on project requirements]
 
 ### Player Actions
+
 - [To be defined]
 
 ### Game Rules
+
 - [To be defined]
 
 ## Game Dynamics (D)
 
 ### Gameplay Flow
+
 - [To be defined]
 
 ### Difficulty Progression
+
 - [To be defined]
 
 ### Feedback Systems
+
 - [To be defined]
 
 ## Game Aesthetics (A)
 
 ### Visual Style
+
 - [To be defined]
 
 ### Audio Design
+
 - [To be defined]
 
 ### User Interface
+
 - [To be defined]
 
 ## Technical Requirements
 
 ### Platform
+
 - Modern web browsers (Chrome, Firefox, Safari, Edge)
 
 ### Technologies
+
 - HTML5
 - CSS3
 - Vanilla JavaScript
 - Canvas API or DOM manipulation
 
 ### Performance Goals
+
 - 60 FPS target
 - Responsive design
 - Minimal load times
