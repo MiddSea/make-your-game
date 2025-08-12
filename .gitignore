@@ -1,6 +1,5 @@
 # Development notes (not for main branch)
-.notes/
-
+# .notes/
 # OS files
 .DS_Store
 Thumbs.db
@@ -10,6 +9,10 @@ Thumbs.db
 .idea/
 *.swp
 *.swo
+
+# Claude Code local settings
+.claude/settings.local.json
+.claude/*local*
 
 # Logs
 *.log

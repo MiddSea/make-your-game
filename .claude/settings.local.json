@@ -25,7 +25,16 @@
       "Bash(grep:*)",
       "Bash(source:*)",
       "mcp__mem0-memory-mcp__add-memory",
-      "Bash(mv:*)"
+      "Bash(mv:*)",
+      "mcp__claude-desktop__TodoWrite",
+      "mcp__mem0-memory-mcp__search-memories",
+      "mcp__desktop-commander__search_code",
+      "mcp__desktop-commander__read_file",
+      "mcp__claude-desktop__Bash",
+      "mcp__claude-desktop__Read",
+      "mcp__claude-desktop__Edit",
+      "mcp__desktop-commander__list_directory",
+      "mcp__desktop-commander__write_file"
     ]
   },
   "enableAllProjectMcpServers": true
