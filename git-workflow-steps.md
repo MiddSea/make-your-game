@@ -41,10 +41,11 @@ code .claude/CLAUDE.local.projd.md .claude/CLAUDE.local.md
 ```bash
 # Check existing documentation
 ls -la .notes/
-
-# review all files in /docs and move that directory contents including the README.md to .notes
-mv docs/* .notes/
 ```
+
+~~`# review all files in /docs and move that directory contents including the README.`~~
+~~`md to .notes`~~
+~~`mv docs/* .notes/`~~
 
 - [ ] check and update the files 
 - [ ] update README to reflect contents of .notes directory
@@ -62,10 +63,16 @@ git status  # verify all files are staged
 git commit -m "Organize documentation and update gitignore - $(date '+%F_%H-%M_%Z')"
 ```
 
-### 5. Switch to main and merge dev
+### 5. Clean .notes/ Strategy (Production Branch)
 
 ```bash
+# Switch to main branch
 git checkout main
+
+# Remove .notes/ from tracking on main branch (one-time setup)
+git rm --cached .notes/
+
+# Merge dev into main (.notes/ stays excluded from main)
 git merge dev
 git log --oneline -5  # verify merge
 ```
@@ -80,9 +87,10 @@ tea login list  # check current config
 ### 7. Create private repository on Gitea
 
 ```bash
-tea repos create make-your-game \
-  --description "Game development project with MDA framework" \
-  --private
+# done
+#tea repos create make-your-game \
+#  --description "Game development project with MDA framework" \
+#  --private
 ```
 
 ### 8. Push all branches to Gitea

@@ -1,3 +1,4 @@
+# 
 # Development notes (not for main branch)
 # .notes/
 # OS files
@@ -5,7 +6,8 @@
 Thumbs.db
 
 # Editor files
-.vscode/
+# vscode should not be ignored
+#.vscode/
 .idea/
 *.swp
 *.swo
