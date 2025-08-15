@@ -1,7 +1,9 @@
 # MDA Framework Analysis for Breakout
 
 ## Overview
+
 The MDA (Mechanics, Dynamics, Aesthetics) framework helps us design games by thinking about:
+
 - **Mechanics**: The rules and systems
 - **Dynamics**: How those rules create gameplay
 - **Aesthetics**: The emotional experience for players
@@ -9,6 +11,7 @@ The MDA (Mechanics, Dynamics, Aesthetics) framework helps us design games by thi
 ## Mechanics (The Rules)
 
 ### Core Mechanics
+
 1. **Ball Movement**
    - Constant velocity
    - Angle reflection on collision
@@ -41,6 +44,7 @@ The MDA (Mechanics, Dynamics, Aesthetics) framework helps us design games by thi
    - Game over when lives depleted
 
 ### Control Mechanics
+
 - **Left Arrow**: Move paddle left
 - **Right Arrow**: Move paddle right
 - **Space**: Pause/unpause
@@ -49,6 +53,7 @@ The MDA (Mechanics, Dynamics, Aesthetics) framework helps us design games by thi
 ## Dynamics (The Gameplay)
 
 ### Emergent Behaviors
+
 1. **Risk vs Reward**
    - Players must position paddle optimally
    - Letting ball reach higher speeds for more points
@@ -70,6 +75,7 @@ The MDA (Mechanics, Dynamics, Aesthetics) framework helps us design games by thi
    - Reactive gameplay
 
 ### Player Strategies
+
 - **Safe Play**: Keep ball in center, steady progress
 - **Edge Play**: Use paddle edges for angle shots
 - **Speed Control**: Deliberate miss to reset ball speed
@@ -78,6 +84,7 @@ The MDA (Mechanics, Dynamics, Aesthetics) framework helps us design games by thi
 ## Aesthetics (The Experience)
 
 ### Target Emotions
+
 1. **Challenge**
    - Overcoming difficult levels
    - Beating high scores
@@ -99,7 +106,8 @@ The MDA (Mechanics, Dynamics, Aesthetics) framework helps us design games by thi
    - Predictable physics
 
 ### Visual Design (Based on Screenshot)
-- **Color Palette**: 
+
+- **Color Palette**:
   - Blue background
   - Colorful block rows (rainbow pattern)
   - Yellow paddle
@@ -112,6 +120,7 @@ The MDA (Mechanics, Dynamics, Aesthetics) framework helps us design games by thi
   - Classic arcade font
 
 ### Audio Design
+
 - **Sound Effects**:
   - Ball bounce (different for walls/paddle/blocks)
   - Block destruction
@@ -128,16 +137,19 @@ The MDA (Mechanics, Dynamics, Aesthetics) framework helps us design games by thi
 ## Implementation Priorities
 
 ### Phase 1 (Core Mechanics)
+
 - Ball physics
 - Paddle control
 - Basic collisions
 
 ### Phase 2 (Dynamics)
+
 - Block grid
 - Scoring system
 - Lives system
 
 ### Phase 3 (Aesthetics)
+
 - Visual polish
 - Sound effects
 - Particle effects
@@ -146,18 +158,21 @@ The MDA (Mechanics, Dynamics, Aesthetics) framework helps us design games by thi
 ## Design Decisions
 
 ### Why DOM Instead of Canvas?
+
 - Project requirement
 - Learning opportunity
 - Performance challenge
 - Unique rendering approach
 
 ### Performance Targets
+
 - 60 FPS consistent
 - Smooth animations
 - No input lag
 - Efficient collision detection
 
 ### Accessibility Considerations
+
 - Clear visual indicators
 - Keyboard-only controls
 - Pause functionality
