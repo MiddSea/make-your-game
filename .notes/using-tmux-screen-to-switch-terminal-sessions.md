@@ -7,13 +7,13 @@ File is
 > to switch to the window
 > running a claude command on
 > the command line?*
->
+>  
 > so I need
->
+>  
 > - process running claude
 > - window/terminal name/
 > - process -id
->
+>  
 > and a way of switching on
 > the command line
 
