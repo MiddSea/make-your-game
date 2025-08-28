@@ -13,6 +13,7 @@
 ### 1. Git Remote Configuration
 
 **Seán:**
+
 ```bash
 git remote add website git@github.com:MiddSea/MiddSea.github.io.git
 git remote -v
@@ -23,6 +24,7 @@ git remote -v
 ### 2. Website Mirroring Setup
 
 **Seán:**
+
 ```bash
 mv mirror_to_website.sh .notes/
 chmod +x .notes/mirror_to_website.sh
@@ -30,6 +32,7 @@ chmod +x .notes/mirror_to_website.sh
 ```
 
 **Files/Directories to Mirror:**
+
 - `docs/` → Website docs
 - `tests/` → Test documentation  
 - `assets/images/` → Images for web
@@ -39,11 +42,13 @@ chmod +x .notes/mirror_to_website.sh
 ### 3. Documentation Tasks
 
 **Claude Code:**
+
 - [ ] Document git mv vs mv differences
 - [ ] Document zsh history expansion patterns
 - [ ] Create mirror_to_website.sh documentation
 
 **Target Repos:**
+
 - **Origin (gitea):** `https://01.gritlab.ax/git/smiddleto/make-your-game.git`
 - **Github:** `https://github.com/MiddSea/make-your-game.git`  
 - **Website:** `git@github.com:MiddSea/MiddSea.github.io.git`

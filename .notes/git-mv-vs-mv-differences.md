@@ -6,12 +6,14 @@
 ## Core Differences
 
 ### `git mv` - Git-aware move
+
 - **Purpose:** Move/rename files while updating git index automatically
 - **Stages:** Operation is immediately staged for commit
 - **Tracking:** Preserves file history and git understands it as a move
 - **Atomicity:** Single operation that combines move + staging
 
 ### `mv` - System-level move  
+
 - **Purpose:** Move/rename files at filesystem level only
 - **Staging:** Requires manual `git rm` + `git add` to update index
 - **Tracking:** Git sees as delete + add (may lose history continuity)
@@ -20,6 +22,7 @@
 ## Command Examples
 
 ### Using `git mv`
+
 ```bash
 git mv docs/PROJECT_SETUP.md docs/project_setup.md
 # File moved AND staged automatically
@@ -27,6 +30,7 @@ git status  # Shows: renamed: docs/PROJECT_SETUP.md -> docs/project_setup.md
 ```
 
 ### Using `mv` (requires additional steps)
+
 ```bash
 mv docs/PROJECT_SETUP.md docs/project_setup.md
 # Only filesystem move completed
@@ -40,13 +44,15 @@ git add docs/project_setup.md
 
 ## When to Use Each
 
-### Use `git mv` when:
+### Use `git mv` when
+
 - Moving tracked files within a git repository
 - Renaming files while preserving git history
 - Want single-command operation
 - Need clean commit history
 
-### Use `mv` when:
+### Use `mv` when
+
 - Moving files outside git repositories
 - Complex operations requiring shell features
 - Batch operations with shell patterns
@@ -54,13 +60,15 @@ git add docs/project_setup.md
 
 ## History Preservation
 
-### `git mv` advantages:
+### `git mv` advantages
+
 ```bash
 git mv old_file.md new_file.md
 git log --follow new_file.md  # Shows complete history including pre-rename
 ```
 
-### `mv` potential issues:
+### `mv` potential issues
+
 ```bash
 mv old_file.md new_file.md
 git add -A
@@ -81,7 +89,8 @@ git log --follow new_file.md  # May not show pre-rename history
 
 ## Common Patterns
 
-### Lowercase filename conversion:
+### Lowercase filename conversion
+
 ```bash
 # Git way:
 git mv FILE.md file.md
@@ -91,7 +100,8 @@ mv FILE.md file.md
 git add -A
 ```
 
-### Directory moves:
+### Directory moves
+
 ```bash
 # Git way:
 git mv src/old_dir src/new_dir

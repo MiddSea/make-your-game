@@ -9,11 +9,13 @@
 **Priority:** HIGH - Essential for Claude Code to understand project properly
 
 **Files to organize:**
+
 - **User-wide:** `~/.claude/CLAUDE.md` (existing, 3,269 bytes)
-- **Local project:** `./.claude/CLAUDE.local.md` (to be created, gitignored) 
+- **Local project:** `./.claude/CLAUDE.local.md` (to be created, gitignored)
 - **Project-wide:** `./.claude/CLAUDE.md` (to be created/organized, checked in)
 
 **Seán & Claude Code:**
+
 - [ ] Check if `./.claude/` directory exists
 - [ ] Read and analyze existing `~/.claude/CLAUDE.md` content
 - [ ] Create `./.claude/CLAUDE.local.md` (gitignored)
@@ -24,10 +26,12 @@
 ### 2. Documentation Strategy
 
 **Problem Identified:**
+
 - `/memory` command prioritizes non-existent project files over existing user-wide file
 - CLAUDE.md files need to be in `.claude/` directory to avoid cluttering repo for others
 
 **Solution:**
+
 - Organize files in logical hierarchy
 - Ensure coherent content across all three levels
 - Document the relationship between files
@@ -35,6 +39,7 @@
 ### 3. Session Documentation
 
 **Ongoing:**
+
 - [ ] Continue recording in `.notes/command-session-2025-08-26_19-12_EEST.md`
 - [ ] Document all commands and results
 - [ ] Track progress on CLAUDE.md organization
@@ -60,4 +65,4 @@
 - All three files need to work together coherently
 
 ---
-*Action plan created: 2025-08-26_20-29_EEST*
+[ *Action plan created: 2025-08-26_20-29_EEST* ]

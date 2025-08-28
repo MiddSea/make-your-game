@@ -47,15 +47,12 @@ ls -la .notes/
 ~~`md to .notes`~~
 ~~`mv docs/* .notes/`~~
 
-- [ ] check and update the files 
+- [ ] check and update the files
 - [ ] update README to reflect contents of .notes directory
 
 ~~# Review if any files need to be moved to docs/ or integrated~~
 
-
 ### 4. Commit all current changes on dev
-
-
 
 ```bash
 git add .

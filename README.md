@@ -15,7 +15,7 @@ This project is part of the grit:lab curriculum where we'll be building a browse
 
 ## Project Structure
 
-```
+```shell
 make-your-game/
 ├── README.md           # Project documentation
 ├── .gitignore         # Git ignore file
@@ -40,6 +40,7 @@ make-your-game/
 ## Development Workflow
 
 This project uses a Git Flow-like branching strategy:
+
 - `main` - Production-ready code
 - `dev` - Development branch for integration
 - `feature/*` - Feature branches for new functionality

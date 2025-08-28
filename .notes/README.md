@@ -1,3 +1,3 @@
-#Notes for make-your-game
+# Notes for make-your-game
 
 ./notes/README.md

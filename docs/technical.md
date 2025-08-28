@@ -12,7 +12,7 @@ The game will be structured using the MVC pattern:
 
 ## Project Structure
 
-```
+```zsh
 src/
 ├── index.html          # Entry point
 ├── css/
@@ -48,6 +48,7 @@ function gameLoop(timestamp) {
 ### State Management
 
 The game will maintain state for:
+
 - Player position and stats
 - Game objects
 - Score and progression
@@ -62,16 +63,19 @@ The game will maintain state for:
 ## Technologies Used
 
 ### HTML5 Canvas API
+
 - For rendering game graphics
 - Hardware acceleration support
 - Efficient sprite rendering
 
 ### JavaScript ES6+
+
 - Classes for object-oriented design
 - Modules for code organization
 - Arrow functions and modern syntax
 
 ### CSS3
+
 - Flexbox/Grid for layout
 - CSS animations for UI effects
 - Media queries for responsiveness
@@ -79,6 +83,7 @@ The game will maintain state for:
 ## Performance Considerations
 
 ### Optimization Strategies
+
 1. Object pooling for frequently created/destroyed objects
 2. Efficient collision detection algorithms
 3. RequestAnimationFrame for smooth animation
@@ -86,6 +91,7 @@ The game will maintain state for:
 5. Lazy loading of assets
 
 ### Memory Management
+
 - Proper cleanup of event listeners
 - Clearing references to unused objects
 - Monitoring memory usage during development
@@ -93,12 +99,14 @@ The game will maintain state for:
 ## Browser Compatibility
 
 ### Minimum Requirements
+
 - Chrome 60+
 - Firefox 55+
 - Safari 11+
 - Edge 79+
 
 ### Feature Detection
+
 ```javascript
 // Example feature detection
 if (!window.requestAnimationFrame) {
@@ -109,16 +117,19 @@ if (!window.requestAnimationFrame) {
 ## Development Tools
 
 ### Version Control
+
 - Git with main/dev branching strategy
 - Gitea for primary repository
 - GitHub for mirror/backup
 
 ### Code Quality
+
 - ESLint for code linting
 - Prettier for code formatting
 - JSDoc for documentation
 
 ### Testing
+
 - Manual testing across browsers
 - Performance profiling with Chrome DevTools
 - Error tracking and debugging
@@ -133,6 +144,7 @@ if (!window.requestAnimationFrame) {
 ## Deployment
 
 The game will be deployed as static files that can be:
+
 - Hosted on any web server
 - Run locally via file:// protocol
 - Embedded in other web pages

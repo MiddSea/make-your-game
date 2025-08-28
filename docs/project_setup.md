@@ -6,7 +6,7 @@ This document summarizes the setup process for the `make-your-game` project.
 
 ### Directory Structure Created
 
-```
+```shell
 make-your-game/
 ├── README.md              # Project overview
 ├── .gitignore            # Git ignore configuration
@@ -92,7 +92,7 @@ The project follows a Git Flow-like branching strategy:
 
 ### Next Steps
 
-1. **Get Project Brief**: Copy the content from https://01.gritlab.ax/intra/gritlab/school-curriculum/make-your-game
+1. **Get Project Brief**: Copy the content from <https://01.gritlab.ax/intra/gritlab/school-curriculum/make-your-game>
 2. **Push to Gitea**: Run `./mirror_to_github.sh push`
 3. **Create GitHub Repo**: Create `make-your-game` repository on GitHub
 4. **Mirror to GitHub**: Run `./mirror_to_github.sh mirror`
@@ -132,4 +132,4 @@ git commit -m "Description of changes"
 
 ---
 
-*Project initialized on May 24, 2025*
+[ *Project initialized on May 24, 2025* ]

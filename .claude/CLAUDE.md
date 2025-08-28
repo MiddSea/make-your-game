@@ -17,7 +17,7 @@
 
 ## Project Structure
 
-```
+```shell
 make-your-game/
 ├── .claude/           # Claude Code configuration (this file)
 ├── .notes/           # Development notes (dev branch only)
@@ -37,15 +37,18 @@ make-your-game/
 ## Development Workflow
 
 ### Branch Strategy
+
 - **main:** Clean production code, no .notes/ directory
 - **dev:** Development with full .notes/ documentation
 
 ### Testing Commands
+
 - Manual testing: Open `index.html` in browser
 - Check browser console for JavaScript errors
 - Test game functionality manually
 
 ### Build Process
+
 - No build step required (vanilla JavaScript)
 - Files are served directly from filesystem
 - Assets loaded dynamically as needed
@@ -55,18 +58,21 @@ make-your-game/
 ## Game Development Guidelines
 
 ### Code Style
+
 - Use modern JavaScript (ES6+)
 - Modular functions for game logic
 - Clear variable and function naming
 - Comments for complex game mechanics
 
 ### File Organization
+
 - Game logic in `game.js`
-- Styling in `style.css` 
+- Styling in `style.css`
 - Assets in appropriate subdirectories
 - Keep HTML minimal and semantic
 
 ### Performance Considerations
+
 - Optimize asset loading
 - Use requestAnimationFrame for smooth animation
 - Minimize DOM manipulation
@@ -86,6 +92,7 @@ make-your-game/
 ## Project-Specific Commands
 
 ### Development
+
 ```bash
 # Start development session
 git checkout dev
@@ -100,6 +107,7 @@ python3 -m http.server 8000  # For testing with HTTP
 ```
 
 ### Git Workflow
+
 ```bash
 # Development workflow
 git checkout dev
