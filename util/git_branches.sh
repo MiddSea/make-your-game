@@ -95,11 +95,13 @@ function finish_feature {
     git pull origin dev
     git merge --no-ff "$feature_name" -m "Merge feature/$1 into dev"
     
-    # Delete feature branch
-    git branch -d "$feature_name"
-    echo "Feature $1 merged into dev and branch deleted"
+            ## 2025-09-03_21-23_EEST disabled deletion
+            ## Delete feature branch 
+
+            ## git branch -d "$feature_name"
+            ## echo "Feature $1 merged into dev and branch deleted"
     
-    # Push dev to remote if remote exists
+    ## Push dev to remote if remote exists
     if git remote -v | grep -q origin; then
         git push origin dev
     fi
