@@ -2,7 +2,7 @@
 
 ## 2025-08-30 Saturday - VSCode Markdown Linter Configuration
 
-### Tasks for Saturday (DO NOT complete before 2025-08-30):
+### Tasks for Saturday (DO NOT complete before 2025-08-30)
 
 1. **Research VSCode linter MD024 ignore configuration**
    - Find ignore file location
