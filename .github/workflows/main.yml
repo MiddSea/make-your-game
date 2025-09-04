@@ -12,9 +12,11 @@ jobs:
         with:
           fetch-depth: 0
       - name: Push to Pages repo
+        env:
+          PAGES_PAT: ${{ secrets.PAGES_PAT }}
         run: |
           git config --global user.email "sean@middleton.fi"
           git config --global user.name "Seán David Middleton"
-          git remote add pages https://${{ secrets.PAGES_PAT }}@github.com/MiddSea/MiddSea.github.io.git
+          git remote add pages https://${PAGES_PAT}@github.com/MiddSea/MiddSea.github.io.git
           # git remote add pages https://${GH_TOKEN}@github.com/MiddSea/MiddSea.github.io.git
           git push --force pages main:main
