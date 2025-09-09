@@ -1,0 +1,35 @@
+{
+    // Enable automatic markdown validation and formatting
+    "markdown.validate.enabled": true,
+    "markdown.validate.ignoredLinks": [
+        "*.md#*"  // Ignore local markdown anchor links
+    ],
+    
+    // Markdownlint configuration - more permissive defaults
+    "markdownlint.config": {
+        // Allow line length flexibility for documentation
+        "MD013": { "line_length": 120 },
+        
+        // Allow inline HTML (useful for GitHub flavored markdown)
+        "MD033": false,
+        
+        // Allow trailing punctuation in headers
+        "MD026": false,
+        
+        // Allow bare URLs (auto-linked in GitHub)
+        "MD034": false,
+        
+        // Most files should follow single H1 rule, but allow overrides
+        "MD025": true
+    },
+    
+    // Auto-format on save
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.markdownlint": true
+    },
+    
+    // Font ligatures configuration
+    "editor.fontFamily": "Fira Code, Monaco, 'Courier New', monospace",
+    "editor.fontLigatures": true
+}

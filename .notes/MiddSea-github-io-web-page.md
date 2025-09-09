@@ -11,3 +11,9 @@ git push -u origin main
 ```
 
 ## `yml` file
+
+*** to be done *** !=
+
+|h|12|left|center|right|
+|-|--|----|:----:|----:|
+|h|12|me to it left|what is it center|not \| right|

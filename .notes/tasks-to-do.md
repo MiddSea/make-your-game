@@ -1,3 +1,4 @@
+<!-- markdownlint-disable MD025 -->
 # Tasks To Do
 
 ## 2025-08-30 Saturday - VSCode Markdown Linter Configuration
