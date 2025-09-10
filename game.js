@@ -217,19 +217,8 @@ class BreakoutGame {
         const deltaTime = currentTime - this.lastFrameTime;
         const targetFrameTime = 1000 / 60; // 60 FPS
         
-        if (deltaTime >= targetFrameTime) {
             this.update();
             this.render();
-            
-            // FPS calculation
-            this.frameCount++;
-            if (this.frameCount % 60 === 0) {
-                this.fps = Math.round(1000 / deltaTime);
-                console.log(`FPS: ${this.fps}`);
-            }
-            
-            this.lastFrameTime = currentTime;
-        }
         
         requestAnimationFrame((time) => this.gameLoop(time));
     }
