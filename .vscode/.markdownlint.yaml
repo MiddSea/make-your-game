@@ -1,0 +1,27 @@
+# Markdownlint configuration with comments
+# See: https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md
+
+# MD013 - Line length
+MD013:
+  line_length: 120  # Allow up to 120 characters per line
+  tables: false    # Ignore line length in tables
+  code_blocks: false # Ignore line length in code blocks
+  headings: false  # Ignore line length in headings
+
+# MD033 - Inline HTML
+MD033: false  # Allow HTML tags in markdown (useful for GitHub flavored markdown)
+
+# MD026 - Trailing punctuation in headers
+MD026: false  # Allow punctuation at end of headers
+
+# MD034 - Bare URL
+MD034: false  # Allow auto-linked URLs without angle brackets
+
+# MD025 - single top level headers  
+# MD025: true   # Enforce single H1 per document
+MD025: false    # Allow multiple H1 headers
+
+
+# MD024 - No duplicate headings
+# MD024: true   # no multiple headings with the same content
+MD024: false  # Allow multiple headings with the same content

@@ -4,7 +4,8 @@ A JavaScript browser game project for grit:lab curriculum.
 
 ## Project Overview
 
-This project is part of the grit:lab curriculum where we'll be building a browser game using JavaScript. The project will demonstrate:
+This project is part of the grit:lab curriculum where we'll be building a browser game using JavaScript.
+The project will demonstrate:
 
 - JavaScript game programming concepts
 - DOM manipulation

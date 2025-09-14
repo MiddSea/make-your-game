@@ -26,7 +26,7 @@
     // Auto-format on save
     "editor.formatOnSave": true,
     "editor.codeActionsOnSave": {
-        "source.fixAll.markdownlint": true
+        "source.fixAll.markdownlint": "explicit"
     },
     
     // Font ligatures configuration

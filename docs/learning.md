@@ -1,6 +1,7 @@
 # Learning Journal
 
-This document tracks the concepts learned, challenges faced, and solutions discovered during the development of this browser game.
+This document tracks the concepts learned, challenges faced, and solutions discovered during the
+development of this browser game.
 
 ## Project Setup (May 24, 2025)
 
