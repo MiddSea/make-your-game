@@ -25,3 +25,14 @@ MD025: false    # Allow multiple H1 headers
 # MD024 - No duplicate headings
 # MD024: true   # no multiple headings with the same content
 MD024: false  # Allow multiple headings with the same content
+
+# MD041 - First line in file should be a top level header
+# MD041: true   # Enforce top-level header for all files
+# MD041: false  # Allow files to not start with a top-level header
+
+# MD022 - Headers should be surrounded by blank lines
+MD022: true   # Enforce blank lines around headers
+# MD022: false  # Allow headers to not be surrounded by blank lines
+
+
+

@@ -1,10 +1,11 @@
-# Layer investigation 
+<!-- markdownlint-disable line_length heading-increment no-duplicate-heading -->
+# Layer investigation
 
 ```text
 css layers with translate?
 ````
 
-###### ChatGPT said:
+###### ChatGPT said
 
 It sounds like you're asking about using **CSS layers with `translate`**, possibly to create depth, parallax effects, or layered UI. Let’s break this down clearly:
 
@@ -15,15 +16,14 @@ It sounds like you're asking about using **CSS layers with `translate`**, possib
 "Layers" in CSS typically refer to elements **stacked** on top of each other using properties like:
 
 - `position: absolute` or `fixed`
-    
+
 - `z-index`
-    
+
 - `transform`
-    
+
 - `opacity`
-    
+
 - `translate` (as part of the `transform` property)
-    
 
 ---
 
@@ -53,7 +53,7 @@ Copy code
 
 Here’s a simple structure to demonstrate **multiple layers** using `translate`:
 
-### ✅ HTML:
+### ✅ HTML
 
 html
 
@@ -61,7 +61,7 @@ Copy code
 
 `<div class="container">   <div class="layer back">Back Layer</div>   <div class="layer middle">Middle Layer</div>   <div class="layer front">Front Layer</div> </div>`
 
-### 🎨 CSS:
+### 🎨 CSS
 
 css
 
@@ -69,7 +69,7 @@ Copy code
 
 `.container {   position: relative;   width: 400px;   height: 300px; }  .layer {   position: absolute;   width: 100%;   height: 100%;   color: white;   display: flex;   justify-content: center;   align-items: center;   font-size: 2em;   transition: transform 0.3s ease; }  .back {   background: darkblue;   z-index: 1;   transform: translate(0, 0); }  .middle {   background: blue;   z-index: 2;   transform: translate(10px, 10px); }  .front {   background: lightblue;   z-index: 3;   transform: translate(20px, 20px); }`
 
-### 🧩 Result:
+### 🧩 Result
 
 Each layer appears offset using `translate`, and the `z-index` determines the stack order.
 
@@ -92,23 +92,22 @@ This gives a **parallax-style effect** when hovering.
 ## 🧰 Use Cases
 
 - Parallax scrolling
-    
+
 - Layered UI (modals, cards, etc.)
-    
+
 - Simulated depth
-    
+
 - Animations and transitions
-    
 
 ---
 
 If you meant something more specific (like animation, scroll effects, or 3D transforms), feel free to clarify and I’ll tailor the example!
 
-##### You said:
+##### You said
 
 will-change to promote layers
 
-###### ChatGPT said:
+###### ChatGPT said
 
 Great follow-up! You're absolutely on the right track—**`will-change`** is a CSS performance optimization hint to the browser, and yes, it can **promote elements to their own compositing layers** when used correctly.
 
@@ -120,7 +119,7 @@ The `will-change` property tells the browser **which properties of an element ar
 
 ---
 
-## ✅ Syntax:
+## ✅ Syntax
 
 css
 
@@ -137,15 +136,14 @@ This is like saying: _"Hey browser, I’m going to animate or change `transform`
 Using `will-change: transform` (or `opacity`) **promotes the element to its own compositing layer**, which can:
 
 - Reduce paint/repaint costs
-    
-- Improve animation smoothness
-    
-- Help avoid jank (stuttering visuals)
-    
-- Allow hardware acceleration (GPU compositing)
-    
 
-### 🧪 Example:
+- Improve animation smoothness
+
+- Help avoid jank (stuttering visuals)
+
+- Allow hardware acceleration (GPU compositing)
+
+### 🧪 Example
 
 css
 
@@ -163,7 +161,7 @@ Don’t overuse `will-change`. Each promoted layer consumes GPU memory. If you a
 
 > **Use only when needed and remove it when it's no longer useful.**
 
-### Better:
+### Better
 
 css
 
@@ -171,7 +169,7 @@ Copy code
 
 `.element:hover {   will-change: transform; }`
 
-### Or add/remove with JS just before animation:
+### Or add/remove with JS just before animation
 
 js
 
@@ -184,13 +182,12 @@ Copy code
 ## ✅ Ideal Use Cases
 
 - Hover/focus effects
-    
+
 - Elements that animate `transform` or `opacity`
-    
+
 - Parallax layers
-    
+
 - Modals or cards that scale/fade/move
-    
 
 ---
 

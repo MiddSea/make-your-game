@@ -75,7 +75,7 @@ git commit -m "Initial commit: Project setup and documentation structure"
 ---
 
 ## DOM Manipulation
-
+<!-- -->
 ### [Date] - Concept Name
 
 #### What I Learned

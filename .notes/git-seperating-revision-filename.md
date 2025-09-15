@@ -3,10 +3,11 @@
 ## Revisions `--` files
 
 `git <command> [<revisions>...] -- [<file>]`
-what would be a revision? where would the branch go? When would I 
+what would be a revision? where would the branch go? When would I
 actually use '--'?
 
 ⏺ Revisions are ways to specify commits/points in git history:
+
 - `HEAD` - current commit
 - `5288ec0` - commit SHA
 - `main` - branch name
@@ -15,6 +16,7 @@ actually use '--'?
 
 The -- separator is used when git might confuse a filename with a
  revision name. For example:
+
 ```bash
 # Without -- (ambiguous if "main" is both a branch and a file)
 git log main
@@ -36,12 +38,14 @@ Branch names go in the revision position (before --):
 git log main..feature/fps60_after_audit -- game.js
 #        ^revisions^                      ^files^
 ```
+
 You use -- when:
+
 1. Filenames might be confused with branch/tag names
 2. You want to limit commands to specific files
 3. Filenames start with dashes (rare)
-## Step-by-Step Workflow
 
+## Step-by-Step Workflow
 
 ### 1. Clean up .gitignore
 

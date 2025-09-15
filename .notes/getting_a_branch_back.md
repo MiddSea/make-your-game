@@ -1,3 +1,4 @@
+<!-- markdownlint-disable no-emphasis-as-heading line_length -->
 # Getting a Branch Back
 
 ## Scenario

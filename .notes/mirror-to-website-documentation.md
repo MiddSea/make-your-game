@@ -1,3 +1,4 @@
+<!-- markdownlint-disable line-length -->
 # Website Mirroring Documentation
 
 **Script:** `.notes/mirror_to_website.sh`  

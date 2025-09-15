@@ -40,6 +40,7 @@ make-your-game/
 
 - **main:** Clean production code, no .notes/ directory
 - **dev:** Development with full .notes/ documentation
+- **`feature/<feature-name>`** This is the new features with descriptive names.
 
 ### Testing Commands
 
@@ -122,5 +123,6 @@ git push origin main
 
 ----
 
-*This file is checked into git and shared across the project team*
+*This file is checked into git and shared across the project team*  
 *For local overrides, use `.claude/CLAUDE.local.md` (gitignored)*
+
