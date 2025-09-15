@@ -7,7 +7,7 @@ css layers with translate?
 
 ###### ChatGPT said
 
-It sounds like you're asking about using **CSS layers with `translate`**, possibly to create depth, parallax effects, or layered UI. Let’s break this down clearly:
+It sounds like you're asking about using **CSS layers with `translate`**, possibly to create depth, parallax effects, or layered UI. Let's break this down clearly:
 
 ---
 
