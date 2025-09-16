@@ -12,7 +12,7 @@ function show_help {
     echo "  feature start NAME    Create a new feature branch from dev"
     echo "  feature finish NAME   Merge feature branch to dev and delete it"
     echo "  release               Merge dev into main"
-    echo "  sync                  Sync all branches with remote"
+    echo "  -s sync                  Sync all branches with remote"
     echo ""
     echo "Options:"
     echo "  -h, --help            Show this help message"
@@ -180,11 +180,23 @@ case "$1" in
     release)
         make_release
         ;;
-    sync)
+    -s|sync)
         sync_branches
         ;;
     -h|--help)
         show_help
+        ;;
+    # Typo handling
+    synch)  
+        echo "'$1' Did you mean 'sync'? "
+        read -p "Sync anyway? (y/N): " -n 1 -r
+        echo
+        if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+            exit 1
+        else
+            echo "Running sync command."
+            sync_branches
+        fi
         ;;
     *)
         echo "Unknown command: $1"

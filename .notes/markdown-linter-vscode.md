@@ -1,5 +1,5 @@
 # VSCode Markdown Linter Configuration
-
+<!-- markdownlint-disable MD013 -->
 ## Overview
 
 VSCode has built-in markdown validation and markdownlint extension. We configure automatic validation with file-specific overrides for special cases like task lists with multiple H1 headers.
@@ -53,10 +53,10 @@ Content with relaxed spacing and emphasis rules
 
 Change rule parameters temporarily:
 
-```markdown
-<!-- markdownlint-configure-file {"MD013": {"line_length": 20}} -->
+```md
+<!-- markdownlint-configure-file {"MD013": {"line-length": 20}} -->
 a very short line
-<!-- markdownlint-configure-file {"MD013": {"line_length": 35}} -->
+<!-- markdownlint-configure-file {"MD013": {"line-length": 35}} -->
 123456789012345678901234567890
 <!-- markdownlint-disable MD013 -->
 Very long line that ignores length completely...

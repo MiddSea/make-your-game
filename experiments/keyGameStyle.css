@@ -148,6 +148,7 @@ body {
     );
     pointer-events: none;
     z-index: 5;
+    transform: translate(0, );
 }
 /* Key styling */
 

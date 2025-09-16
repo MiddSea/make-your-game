@@ -1,5 +1,5 @@
 # Exercise Practice Guidelines
-
+<!-- markdownlint-disable MD013 -->
 - The file is not!!!!! complete until I have submitted it online. For that it needs to be uploaded to gitea in the main branch. I also want it to be in v0.N.N until it passes their test without errors  Then I can submit it. I keep on saying this. Remember this! Stop marking exercises as complete until I have tested them. When they pass update them to v1.0.0 with commit messages that give clear,thourough, concise, useful and educational information.
 - For exercises that haven't passed online testing yet:
   - Version should always be v0.a.b-XXXXX (where a and b can be any number, but first digit must be 0)

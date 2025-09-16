@@ -1,3 +1,4 @@
+<!-- markdownlint-disable first-line-heading line-length -->
 # Oh-My-Zsh Git Aliases: Understanding Local vs Remote Branches
 
 ## The Problem We Solved

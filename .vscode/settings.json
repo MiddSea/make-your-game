@@ -4,7 +4,9 @@
     "markdown.validate.ignoredLinks": [
         "*.md#*"  // Ignore local markdown anchor links
     ],
-    
+    // Enable auto preview for markdown files
+    "markdown.extension.preview.autoShowPreviewToSide": true,
+
     // Markdownlint configuration - more permissive defaults
     "markdownlint.config": {
         // Allow line length flexibility for documentation
@@ -26,7 +28,7 @@
     // Auto-format on save
     "editor.formatOnSave": true,
     "editor.codeActionsOnSave": {
-        "source.fixAll.markdownlint": true
+        "source.fixAll.markdownlint": "explicit"
     },
     
     // Font ligatures configuration
