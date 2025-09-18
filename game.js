@@ -212,11 +212,11 @@ class BreakoutGame {
     // Main game loop - targeting 60 FPS
     gameLoop(currentTime) {
         if (!this.gameRunning || this.gamePaused) return;
-        
+        /* speed up the game loop by removing delta time calculations
         // Calculate delta time for consistent motion
         const deltaTime = currentTime - this.lastFrameTime;
         const targetFrameTime = 1000 / 60; // 60 FPS
-        
+    */    
             this.update();
             this.render();
         
