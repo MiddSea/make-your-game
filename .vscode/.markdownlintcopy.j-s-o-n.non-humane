@@ -1,0 +1,75 @@
+
+{
+  "MD013": { "line_length": 450 },
+  "MD033": false,
+  "MD026": false,
+  "MD034": false,
+  "no-duplicate-heading": true
+}
+
+// Markdownlint configuration with comments
+// See: https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md
+
+// MD013 - Line length
+// MD013: // alias for line_length
+line_length:
+  line_length: 120  // Allow up to 120 characters per line
+  tables: false    // Ignore line length in tables
+  code_blocks: false // Ignore line length in code blocks
+  headings: false  // Ignore line length in headings
+
+// MD033: false  // Allow HTML tags in markdown (useful for GitHub flavored markdown)
+// alias for MD033 is no_html
+no_html: false  // Allow HTML tags in markdown (useful for GitHub flavored markdown)
+
+// MD026 - Trailing punctuation in headers
+// alias for MD026 is no_trailing_punctuation_in_headers
+no_trailing_punctuation_in_headers: false  // Allow punctuation at end of headers
+// MD026: false  // Allow punctuation at end of headers
+
+// MD034 - Bare URL aliases
+// alias for MD034 is no_bare_urls
+no_bare_urls: false  // Allow auto-linked URLs without angle brackets
+// MD034: false  // Allow auto-linked URLs without angle brackets
+
+// MD025 - single top level headers alias
+// alias for MD025 is single_h1
+single_h1: false  // Allow multiple H1 headers in a document
+// single_h1: true   // Enforce single H1 per document 
+// MD025: true   // Enforce single H1 per document
+// MD025: false    // Allow multiple H1 headers
+
+// MD022 - Headers should be surrounded by blank lines
+// alias for MD022 is headers_surrounded_by_blank_lines
+headers_surrounded_by_blank_lines: true  // Enforce blank lines around headers
+// headers_surrounded_by_blank_lines: false  // Allow headers to not be surrounded by blank lines
+// MD022: true   // Enforce blank lines around headers
+// MD022: false  // Allow headers to not be surrounded by blank lines
+
+// MD024 - No duplicate headings 
+// alias for MD024 is no_duplicate_headings
+no_duplicate_headings: false  // Allow multiple headings with the same content
+// no_duplicate_headings: true   // no multiple headings with the same content
+// MD024: false  // Allow multiple headings with the same content
+// MD024: true   // no multiple headings with the same content
+
+// MD031/blanks-around-fences Fenced code blocks should be surrounded by blank lines
+// blanks-around-fences: true  // Enforce blank lines around fenced code blocks
+blanks-around-fences: false  // Allow fenced code blocks to not be surrounded by blank lines
+// MD031: true   // Enforce blank lines around fenced code blocks
+// MD031: false  // Allow fenced code blocks to not be surrounded by blank lines
+
+// MD032 Lists should be surrounded by blank lines
+// blanks-around-lists: true  // Enforce blank lines around lists
+blanks-around-lists: false  // Allow lists to not be surrounded by blank lines
+// MD032: false  // Allow lists to not be surrounded by blank lines
+// MD032: true   // Enforce blank lines around lists
+
+// MD041 - First line in file should be a top level header 
+// alias for MD041 is first_line_h1
+// first_line_h1: false  // Allow files to not start with a top-level header
+// first_line_h1: true   // Enforce top-level header for all files
+// MD041: true   // Enforce top-level header for all files
+// MD041: false  // Allow files to not start with a top-level header
+
+

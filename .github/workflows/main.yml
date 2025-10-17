@@ -1,0 +1,19 @@
+name: Mirror main to Pages repo
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Push to Pages repo
+        run: |
+          git config --global user.email "sean@middleton.fi"
+          git config --global user.name "Seán David Middleton"
+          git remote add pages https://${{ secrets.GH_TOKEN }}@github.com/MiddSea/MiddSea.github.io.git
+          git push --force pages main:main
