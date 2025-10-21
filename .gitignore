@@ -1,0 +1,23 @@
+# Development notes (not for main branch)
+.notes/
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+# vscode should not be ignored
+#.vscode/
+.idea/
+*.swp
+*.swo
+
+# Claude Code local settings
+.claude/settings.local.json
+.claude/*local*
+
+# Logs
+*.log
+
+# Note: .git directory is automatically excluded by git itself
+# The .git entry here was added due to past corruption issue
+# where .git was mistakenly committed. See log 2025-10-15_15-07_EEST

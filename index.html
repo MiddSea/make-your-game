@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breakout Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <div id="game-area">
+            <div id="bricks-container"></div>
+            <div id="ball"></div>
+            <div id="paddle"></div>
+        </div>
+        <div id="game-ui">
+            <div id="timer">Timer: <span id="timer-value">99:99:99</span></div>
+            <div id="score">Score: <span id="score-value">99999</span></div>
+            <div id="lives">Lives: <span id="lives-value">99</span></div>
+            <div id="level">Level: <span id="level-value">99</span></div>
+        </div>
+        <div id="info-bar">
+            <div id="fps">FPS: <span id="fps-value">999</span></div>
+            <div id="version">v: <span id="version-value">X.X.X</span></div>
+            <!-- <div id="time-now">Time Now: <span id="time-now-value">00:00:00 TMZZ</span></div> --> 
+        </div>
+        <div id="start-screen">
+            <h2>BREAKOUT</h2>
+            <p>Press SPACEBAR to start</p>
+        </div>
+        <div id="pause-menu" class="hidden">
+            <h2>Game Paused</h2>
+            <p>Press P to continue or R to restart</p>
+        </div>
+        <div id="game-over" class="hidden">
+            <h2>Game Over</h2>
+            <p>Final Score: <span id="final-score">0</span></p>
+            <p>Press SPACEBAR to play again</p>
+        </div>
+    </div>
+    <!-- <script src="game.js?v=20251020-1610"></script>  2025-10-20_16-10_EEST Cache busting for v0.3.0 - feature/timer COMPLETE -->
+    <!-- <script src="game.js?v=20251020-1712"></script>  2025-10-20_17-12_EEST Cache busting for v0.3.1 - feature/levels Z-index layering -->
+    <script src="game.js?v=20251020-1832"></script>  <!-- 2025-10-20_18-32_EEST Cache busting for v0.3.2 - feature/levels translateZ(0) compositor layers -->
+</body>
+</html>

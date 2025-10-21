@@ -1,0 +1,168 @@
+/* Breakout Game - Retro Arcade Styling */
+
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(45deg, #000, #111);
+    font-family: 'Courier New', monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #00ff00;
+}
+
+#game-container {
+    position: relative;
+    width: 800px;
+    height: 600px;
+    border: 3px solid #00ff00;
+    box-shadow: 0 0 20px #00ff00;
+    background: #000;
+}
+
+#game-area {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+#game-ui {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    color: #00ff00;
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+    font-weight: bold;
+    z-index: 10;
+    text-shadow: 0 0 5px #00ff00;
+}
+
+#bricks-container {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    height: 200px;
+}
+
+.brick {
+    position: absolute;
+    width: 78px;
+    height: 20px;
+    border: 1px solid #000;
+    box-shadow: inset 0 0 5px rgba(255,255,255,0.3);
+}
+
+/* Brick colors based on scoring */
+.brick-red {
+    background: linear-gradient(135deg, #ff0000, #cc0000);
+    box-shadow: 0 0 5px #ff0000;
+}
+
+.brick-orange {
+    background: linear-gradient(135deg, #ff8800, #cc6600);
+    box-shadow: 0 0 5px #ff8800;
+}
+
+.brick-green {
+    background: linear-gradient(135deg, #00ff00, #00cc00);
+    box-shadow: 0 0 5px #00ff00;
+}
+
+.brick-yellow {
+    background: linear-gradient(135deg, #ffff00, #cccc00);
+    box-shadow: 0 0 5px #ffff00;
+}
+
+#ball {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: radial-gradient(circle, #ffffff, #cccccc);
+    border-radius: 50%;
+    box-shadow: 0 0 8px #ffffff;
+}
+
+#paddle {
+    position: absolute;
+    width: 80px;
+    height: 12px;
+    background: linear-gradient(135deg, #00ff00, #00cc00);
+    border-radius: 6px;
+    box-shadow: 0 0 10px #00ff00;
+    bottom: 30px;
+    left: 360px;
+}
+
+#start-screen, #pause-menu, #game-over {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.95);
+    color: #00ff00;
+    padding: 30px;
+    text-align: center;
+    border: 2px solid #00ff00;
+    box-shadow: 0 0 20px #00ff00;
+    z-index: 100;
+    font-family: 'Courier New', monospace;
+}
+
+#start-screen h2, #pause-menu h2, #game-over h2 {
+    font-size: 36px;
+    margin: 0 0 20px 0;
+    text-shadow: 0 0 10px #00ff00;
+    letter-spacing: 3px;
+}
+
+#start-screen p, #pause-menu p, #game-over p {
+    font-size: 16px;
+    margin: 10px 0;
+    text-shadow: 0 0 5px #00ff00;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Retro scanlines effect */
+#game-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 255, 0, 0.1) 2px,
+        rgba(0, 255, 0, 0.1) 4px
+    );
+    pointer-events: none;
+    z-index: 5;
+    transform: translate(0, );
+}
+/* Key styling */
+
+kbd {
+  display: inline-block; /* Allows setting width, height, padding */
+  padding: 0.2em 0.5em; /* Padding around the letter */
+  margin: 0.1em; /* Space between keys if multiple are used */
+  border: 1px solid #0c0; /* Light border for the key shape */
+  border-radius: 3px; /* Slightly rounded corners */
+  background-color: #0e0; /* Light background color */
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 0 2px rgba(0, 255, 0, 0.8) inset; /* Subtle 3D effect */
+  font-family: monospace; /* Monospace font for a key-like appearance */
+  font-size: 0.9em; /* Slightly smaller font size */
+  line-height: 1; /* Adjust line height for better vertical centering */
+  color: #333; /* Dark text color */
+  text-shadow: 0 1px 0 #0f0; /* Light text shadow for depth */
+}

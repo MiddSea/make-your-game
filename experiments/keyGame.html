@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breakout Game</title>
+    <link rel="stylesheet" href="keyGameStyle.css">
+    <!-- <link rel="icon" href="favicon.ico" type="image/x-icon"> -->
+    <!-- <link rel="icon" type="image/svg+xml" href='data:image/svg+xml;base64 -->
+    <!-- <link rel="icon" type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Crectangle r='50%' cx='50%' cy='50%' fill='tomato'/%3E%3Ccircle r='41%' cx='47%' cy='50%' fill='orange'/%3E%3Ccircle r='33%' cx='48%' cy='53%' fill='gold'/%3E%3Ccircle r='25%' cx='49%' cy='51%' fill='yellowgreen'/%3E%3Ccircle r='17%' cx='52%' cy='50%' fill='lightseagreen'/%3E%3Ccircle r='9%' cx='55%' cy='48%' fill='teal'/%3E%3C/svg%3E" /> -->
+      <!--href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle r='50%' cx='50%' cy='50%' fill='tomato'/%3E%3Ccircle r='41%' cx='47%' cy='50%' fill='orange'/%3E%3Ccircle r='33%' cx='48%' cy='53%' fill='gold'/%3E%3Ccircle r='25%' cx='49%' cy='51%' fill='yellowgreen'/%3E%3Ccircle r='17%' cx='52%' cy='50%' fill='lightseagreen'/%3E%3Ccircle r='9%' cx='55%' cy='48%' fill='teal'/%3E%3C/svg%3E" /> -->
+    <!-- %3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle r='50' cx='50' cy='50' fill='tomato'/%3E%3Ccircle r='41' cx='47' cy='50' fill='orange'/%3E%3Ccircle r='33' cx='48' cy='53' fill='gold'/%3E%3Ccircle r='25' cx='49' cy='51' fill='yellowgreen'/%3E%3Ccircle r='17' cx='52' cy='50' fill='lightseagreen'/%3E%3Ccircle r='9' cx='55' cy='48' fill='teal'/%3E%3C/svg%3E -->
+    <!-- %3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle r='50' cx='50' cy='50' fill='tomato'/%3E%3Ccircle r='41' cx='47' cy='50' fill='orange'/%3E%3Ccircle r='33' cx='48' cy='53' fill='gold'/%3E%3Ccircle r='25' cx='49' cy='51' fill='yellowgreen'/%3E%3Ccircle r='17' cx='52' cy='50' fill='lightseagreen'/%3E%3Ccircle r='9' cx='55' cy='48' fill='teal'/%3E%3C/svg%3E -->
+     <!-- <link rel="icon" type="image/svg+xml"
+      href="data:image/svg+xml,[YOUR ENCODED SVG HERE]" /> -->
+    <!-- <link rel="icon" type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg width='200' height='180' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='30' y='30' height='110' width='110' style='stroke:green;fill:red'%3E%3CanimateTransform attributeName='transform' begin='0s' dur='10s' type='rotate' from='0 85 85' to='360 85 85' repeatCount='indefinite' /%3E%3C/rect%3E%3C/svg%3E" /> -->
+      <link rel="icon" type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg width='300' height='300' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='100%25' height='100%25' fill='black' /%3E%3Crect width='100%25' height='10%25' x='0%25' y='10%25' fill='red' /%3E%3Crect width='100%25' height='10%25' x='0%25' y='22%25' fill='orange' /%3E%3Crect width='100%25' height='10%25' x='0%25' y='34%25' fill='green' /%3E%3Crect width='100%25' height='10%25' x='0%25' y='48%25' fill='yellow' /%3E%3Crect width='2%25' height='60%25' x='19%25' y='0%25' fill='black' /%3E%3Crect width='20%25' height='10%25' x='21%25' y='48%25' fill='black' /%3E%3Crect width='2%25' height='60%25' x='39%25' y='0%25' fill='black' /%3E%3Crect width='2%25' height='60%25' x='79%25' y='0%25' fill='black' /%3E%3Crect width='2%25' height='60%25' x='59%25' y='0%25' fill='black' /%3E%3Crect width='6%25' height='6%25' x='27%25' y='58%25' rx='50%25' fill='white' /%3E%3Crect width='17%25' height='6%25' x='40%25' y='85%25' fill='lightgreen' stroke='lightgreen' /%3E%3Ctext x='2%25' y='7%25' font-weight='bold' font-family='Fairfax HD,monospace' fill='lightgreen' font-size='22'%3E1234%3C/text%3E%3Ctext x='48%25' y='7%25' font-weight='bold' font-family='Fairfax HD,monospace' fill='lightgreen' font-size='22'%3E3%3C/text%3E%3Ctext x='80%25' y='7%25' font-weight='bold' font-family='Fairfax HD,monospace' fill='lightgreen' font-size='22'%3E02:49%3C/text%3E%3C/svg%3E"/>
+</head>
+<body>
+    <div id="game-container">
+        <div id="game-area">
+            <div id="bricks-container"></div>
+            <div id="ball"></div>
+            <div id="paddle"></div>
+        </div>
+        <div id="game-ui">
+            <div id="score">Score: <span id="score-value">0</span></div>
+            <div id="lives">Lives: <span id="lives-value">3</span></div>
+            <div id="level">Level: <span id="level-value">1</span></div>
+        </div>
+        <div id="instructions" class="hidden">
+            <h2>Instructions</h2>
+            <ul>
+                <li><kbd>&leftarrow;</kbd> <kbd>&rightarrow;</kbd></li>
+                <li>Press <kbd>SPACE</kbd> </li>
+                <li>Press <kbd>P</kbd>ause</li>
+                <li>Press <kbd>R</kbd>estart</li>
+                <li>Press <kbd>I</kbd>nstructions</li>
+                <li>Press <kbd>Q</kbd>uit</li>
+            </ul>
+            <button id="close-instructions">Close</button>
+        </div>
+        <div id="start-screen">
+            <h2>BREAKOUT</h2>
+            <p>Press <kbd>SPACE</kbd> to start</p>
+            <p>Press <kbd>Q</kbd> to quit</p>
+        </div>
+        <div id="pause-menu" class="hidden">
+            <h2>Game Paused</h2>
+            <p><kbd>P</kbd>lay 
+            </br><kbd>R</kbd>estart
+            </br><kbd>I</kbd>nstructions
+            </br><kbd>Q</kbd>uit
+            </p>
+        </div>
+        <div id="game-over" class="hidden">
+            <h2>Game Over</h2>
+            <p>Final Score: <span id="final-score">0</span></p>
+            <p>Press <kbd>SPACE</kbd> to play again</p>
+            <p>Press <kbd>Q</kbd> to quit</p>
+        </div>
+    </div>
+    <script src="keyGame.js"></script>
+</body>
+</html>
